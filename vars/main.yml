@@ -1,0 +1,4 @@
+---
+# vars file for docker_engine
+docker_engine_package_state: '{% if docker_engine_upgrade is defined and docker_engine_upgrade %}latest{% else %}present{% endif %}'
+docker_engine_update_homebrew: '{% if docker_engine_upgrade is defined and docker_engine_upgrade %}yes{% else %}no{% endif %}'

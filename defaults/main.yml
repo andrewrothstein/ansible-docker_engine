@@ -1,0 +1,3 @@
+---
+# defaults file for docker_engine
+docker_engine_upgrade: False

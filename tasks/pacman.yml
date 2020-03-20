@@ -1,0 +1,7 @@
+---
+- name: install docker
+  become: yes
+  become_user: root
+  package:
+    name: docker
+    state: '{{ docker_engine_package_state | default("present") }}'
