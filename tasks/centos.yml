@@ -1,5 +1,6 @@
 ---
-- become: yes
+- name: add docker-ce-stable repo
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-stable
@@ -9,7 +10,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-stable-debuginfo
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-stable-debuginfo
@@ -19,7 +21,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-stable-source
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-stable-source
@@ -29,7 +32,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-edge
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-edge
@@ -39,7 +43,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-edge-debuginfo
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-edge-debuginfo
@@ -49,7 +54,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-edge-source
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-edge-source
@@ -59,7 +65,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-test
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-test
@@ -69,7 +76,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-test-debuginfo
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-test-debuginfo
@@ -79,7 +87,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-test-source
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-test-source
@@ -89,7 +98,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-nightly
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-nightly
@@ -99,7 +109,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-nightly-debuginfo
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-nightly-debuginfo
@@ -109,7 +120,8 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- become: yes
+- name: docker-ce-nightly-source
+  become: yes
   become_user: root
   yum_repository:
     name: docker-ce-nightly-source
