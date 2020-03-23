@@ -5,7 +5,7 @@
   yum_repository:
     name: docker-ce-stable
     description: Docker CE Stable - $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/$basearch/stable
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/$basearch/stable
     enabled: yes
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -16,7 +16,7 @@
   yum_repository:
     name: docker-ce-stable-debuginfo
     description: Docker CE Stable - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/debug-$basearch/stable
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/debug-$basearch/stable
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -27,7 +27,7 @@
   yum_repository:
     name: docker-ce-stable-source
     description: Docker CE Stable - Sources
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/source/stable
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/source/stable
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -38,7 +38,7 @@
   yum_repository:
     name: docker-ce-edge
     description: Docker CE Edge - $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/$basearch/edge
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/$basearch/edge
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -49,7 +49,7 @@
   yum_repository:
     name: docker-ce-edge-debuginfo
     description: Docker CE Edge - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/debug-$basearch/edge
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/debug-$basearch/edge
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -60,7 +60,7 @@
   yum_repository:
     name: docker-ce-edge-source
     description: Docker CE Edge - Sources
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/source/edge
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/source/edge
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -71,7 +71,7 @@
   yum_repository:
     name: docker-ce-test
     description: Docker CE Test - $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/$basearch/test
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/$basearch/test
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -82,7 +82,7 @@
   yum_repository:
     name: docker-ce-test-debuginfo
     description: Docker CE Test - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/debug-$basearch/test
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/debug-$basearch/test
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -93,7 +93,7 @@
   yum_repository:
     name: docker-ce-test-source
     description: Docker CE Test - Sources
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/source/test
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/source/test
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -104,7 +104,7 @@
   yum_repository:
     name: docker-ce-nightly
     description: Docker CE Nightly - $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/$basearch/nightly
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/$basearch/nightly
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -115,7 +115,7 @@
   yum_repository:
     name: docker-ce-nightly-debuginfo
     description: Docker CE Nightly - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/debug-$basearch/nightly
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/debug-$basearch/nightly
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
@@ -126,7 +126,7 @@
   yum_repository:
     name: docker-ce-nightly-source
     description: Docker CE Nightly - Sources
-    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_version }}/source/nightly
+    baseurl: https://download.docker.com/linux/centos/{{ ansible_distribution_major_version }}/source/nightly
     enabled: no
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
