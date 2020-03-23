@@ -10,6 +10,14 @@
       paths:
         - '{{ role_path }}/vars'
 - include_tasks: '{{ docker_engine_installer }}.yml'
+- name: write /etc/docker/daemon.json
+  become: yes
+  become_user: root
+  when: docker_engine_daemon_json is defined
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    mode: 0644
 - name: start/enable docker
   become: yes
   become_user: root
