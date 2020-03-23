@@ -10,3 +10,11 @@
       paths:
         - '{{ role_path }}/vars'
 - include_tasks: '{{ docker_engine_installer }}.yml'
+- name: start/enable docker
+  become: yes
+  become_user: root
+  when: docker_engine_manage_service
+  service:
+    name: docker
+    state: '{{ docker_engine_state }}'
+    enabled: '{{ docker_engine_enabled }}'

@@ -2,3 +2,4 @@
 - hosts: all
   roles:
   - role: '{{ playbook_dir }}'
+    docker_engine_manage_service: no
