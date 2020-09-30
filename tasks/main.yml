@@ -18,6 +18,25 @@
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     mode: 0644
+- when: docker_engine_private_registry_cas is defined
+  block:
+    - name: mkdir -p /etc/docker/certs.d
+      become: yes
+      become_user: root
+      file:
+        path: /etc/docker/certs.d
+        state: directory
+        mode: 0755
+        group: docker
+    - name: install CA certs for private registries...
+      become: yes
+      become_user: root
+      with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
+      copy:
+        src: '{{ item.ca_cert }}'
+        dest: /etc/docker/certs.d/{{ item.registry }}
+        group: docker
+        mode: '0640'
 - name: start/enable docker
   become: yes
   become_user: root

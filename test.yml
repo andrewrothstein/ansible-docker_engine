@@ -3,3 +3,6 @@
   roles:
   - role: '{{ playbook_dir }}'
     docker_engine_manage_service: no
+    docker_engine_private_registry_cas:
+      - registry: my-registry:4567
+        ca_cert: my-private-ca.pem
