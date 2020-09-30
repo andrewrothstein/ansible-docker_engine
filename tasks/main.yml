@@ -27,16 +27,25 @@
         path: /etc/docker/certs.d
         state: directory
         mode: 0755
-        group: docker
-    - name: install CA certs for private registries...
+        group: '{{ docker_engine_group | default("docker") }}'
+    - name: create registry CA cert directories
+      become: yes
+      become_user: root
+      with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
+      file:
+        path: /etc/docker/certs.d/{{ item.registry }}
+        state: directory
+        mode: 0755
+        group: '{{ docker_engine_group | default("docker") }}'
+    - name: installing CA certs for private registries...
       become: yes
       become_user: root
       with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
       copy:
         src: '{{ item.ca_cert }}'
-        dest: /etc/docker/certs.d/{{ item.registry }}
-        group: docker
-        mode: '0640'
+        dest: /etc/docker/certs.d/{{ item.registry }}/ca.crt
+        group: '{{ docker_engine_group | default("docker") }}'
+        mode: 0640
 - name: start/enable docker
   become: yes
   become_user: root
