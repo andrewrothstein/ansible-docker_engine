@@ -3,5 +3,7 @@
   become: yes
   become_user: root
   package:
-    name: docker
+    name:
+      - docker
+      - docker-cli
     state: '{{ docker_engine_package_state | default("present") }}'
