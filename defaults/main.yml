@@ -1,6 +1,10 @@
 ---
 # defaults file for docker_engine
+# docker_engine_version: 19.03.13
 docker_engine_upgrade: False
+docker_engine_os_pkgs:
+  - docker-ce
+  - containerd.io
 
 docker_engine_manage_service: yes
 docker_engine_state: started

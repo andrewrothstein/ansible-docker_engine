@@ -1,2 +1,4 @@
 ---
 docker_engine_installer: brew
+docker_engine_os_pkgs:
+  - docker

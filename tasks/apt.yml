@@ -1,0 +1,46 @@
+---
+# Docker Supported OS:
+#   * Debian: https://docs.docker.com/engine/install/debian/
+#   * Ubuntu: https://docs.docker.com/engine/install/ubuntu/
+- name: set apt config facts
+  set_fact:
+    apt_key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    apt_repository_os_distribution_base: 'https://download.docker.com/linux/{{ ansible_distribution | lower }}'
+    apt_repository_os_distribution_gpgkey: '{{ apt_repository_os_distribution_base }}/gpg'
+    apt_repository_os_distribution_debian_arch: "{% if 'x86_64' == ansible_architecture %}amd64{% else %}{{ ansible_architecture | string }}{% endif %}"
+
+- name: install OS pkg deps
+  become: yes
+  become_user: root
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+    state: '{{ docker_engine_package_state | default("present") }}'
+
+- name: add apt key
+  become: yes
+  become_user: root
+  apt_key:
+    url: '{{ apt_repository_os_distribution_gpgkey }}'
+    id: '{{ apt_key_id }}'
+    state: present
+
+- name: add apt repository
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: 'deb [arch={{ apt_repository_os_distribution_debian_arch }}] {{ apt_repository_os_distribution_base }} {{ ansible_distribution_release }} stable'
+    filename: docker-ce
+    state: present
+
+- name: install docker packages
+  become: yes
+  become_user: root
+  apt:
+    name: '{{ item }}{% if docker_engine_version is defined %}={{ docker_engine_version }}{% endif %}'
+    state: '{{ docker_engine_package_state | default("present") }}'
+  with_items: '{{ docker_engine_os_pkgs }}'

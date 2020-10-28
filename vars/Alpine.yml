@@ -1,2 +1,5 @@
 ---
 docker_engine_installer: apk
+docker_engine_os_pkgs:
+  - docker-engine
+  - docker-openrc

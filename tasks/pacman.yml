@@ -1,7 +1,8 @@
 ---
+# ArchLinux Installation Support: https://wiki.archlinux.org/index.php/Docker#Installation
 - name: install docker
   become: yes
   become_user: root
-  package:
-    name: docker
+  pacman:
+    name: '{{ docker_engine_os_pkgs }}'
     state: '{{ docker_engine_package_state | default("present") }}'

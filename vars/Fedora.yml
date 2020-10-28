@@ -1,2 +1,2 @@
 ---
-docker_engine_installer: fedora
+docker_engine_installer: yum

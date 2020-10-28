@@ -1,0 +1,6 @@
+---
+# Docker Supported OS: [state= Pending]
+#   * Fedora: https://docs.docker.com/engine/install/fedora/
+
+# Ansible Issues: 
+#  * dnf_repository: https://github.com/ansible/ansible/issues/46963
