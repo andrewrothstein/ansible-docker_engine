@@ -1,7 +1,7 @@
 ---
 # defaults file for docker_engine
 docker_engine_upgrade: False
-
+docker_engine_init_system: systemd
 docker_engine_manage_service: yes
 docker_engine_state: started
 docker_engine_enabled: yes
@@ -10,3 +10,8 @@ docker_engine_enabled: yes
 #docker_engine_private_registry_cas:
 #  - registry: registry.example.com:4567
 #    ca_cert: my-registry-ca.pem
+
+
+
+# Debian APT Configuration Options
+docker_engine_apt_key_id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88

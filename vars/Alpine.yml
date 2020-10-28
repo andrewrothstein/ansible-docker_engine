@@ -1,2 +1,3 @@
 ---
 docker_engine_installer: apk
+docker_engine_init_system: openrc

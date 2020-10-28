@@ -1,4 +1,5 @@
 ---
+# ArchLinux Installation Support: https://wiki.archlinux.org/index.php/Docker#Installation
 - name: install docker
   become: yes
   become_user: root

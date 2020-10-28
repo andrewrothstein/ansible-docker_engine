@@ -9,7 +9,9 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
+
 - include_tasks: '{{ docker_engine_installer }}.yml'
+
 - name: write /etc/docker/daemon.json
   become: yes
   become_user: root
@@ -18,6 +20,7 @@
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     mode: 0644
+
 - when: docker_engine_private_registry_cas is defined
   block:
     - name: mkdir -p /etc/docker/certs.d
@@ -46,6 +49,7 @@
         dest: /etc/docker/certs.d/{{ item.registry }}/ca.crt
         group: '{{ docker_engine_group | default("docker") }}'
         mode: 0640
+
 - name: start/enable docker
   become: yes
   become_user: root

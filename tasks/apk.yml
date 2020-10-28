@@ -1,9 +1,8 @@
 ---
+# Alpine Installation Support: https://wiki.alpinelinux.org/wiki/Docker
 - name: install docker package
   become: yes
   become_user: root
   package:
-    name:
-      - docker
-      - docker-cli
+    name: docker-engine,docker-openrc
     state: '{{ docker_engine_package_state | default("present") }}'

@@ -1,2 +1,2 @@
 ---
-docker_engine_installer: ubuntu
+docker_engine_installer: apt
