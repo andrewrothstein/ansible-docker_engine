@@ -1,5 +1,4 @@
 ---
-# Docker-CLI // Requires: Docker-Machine
 - name: installing docker with brew
   homebrew:
     name: '{{ item }}'
