@@ -2,13 +2,7 @@
 # Docker-CLI // Requires: Docker-Machine
 - name: installing docker with brew
   homebrew:
-    name: docker
+    name: '{{ item }}'
     state: '{{ docker_engine_package_state | default("present") }}'
     update_homebrew: '{{ docker_engine_update_homebrew | default("no") }}'
-
-# # Docker-Desktop
-# - name: cask install docker-desktop
-#   homebrew_cask:
-#     name: docker
-#     state: '{{ docker_engine_package_state | default("present") }}'
-#     update_homebrew: '{{ docker_engine_update_homebrew | default("no") }}'
+  with_items: '{{ docker_engine_os_pkgs }}'

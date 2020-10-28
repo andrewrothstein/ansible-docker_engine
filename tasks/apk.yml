@@ -4,5 +4,5 @@
   become: yes
   become_user: root
   apk:
-    name: docker-engine,docker-openrc
+    name: '{{ docker_engine_os_pkgs | join(",") }}'
     state: '{{ docker_engine_package_state | default("present") }}'

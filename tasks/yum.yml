@@ -2,16 +2,21 @@
 # Docker Supported OS:
 #   * CentOS: https://docs.docker.com/engine/install/centos/
 #   * Fedora
+- name: set yum config facts
+  set_fact:
+    yum_repository_os_distribution_base: 'https://download.docker.com/linux/{{ ansible_distribution | lower }}'
+    yum_repository_os_distribution_gpgkey: '{{ yum_repository_os_distribution_base }}/gpg'
+
 - name: add docker-ce-stable repo
   become: yes
   become_user: root
   yum_repository:
     name: docker-ce-stable
     description: Docker CE Stable - $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/$basearch/stable
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/$basearch/stable'
     enabled: yes
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: '{{ yum_repository_os_distribution_gpgkey }}'
 
 - name: add docker-ce-stable-debuginfo repo
   become: yes
@@ -19,10 +24,10 @@
   yum_repository:
     name: docker-ce-stable-debuginfo
     description: Docker CE Stable - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/debug-$basearch/stable
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/debug-$basearch/stable'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-stable-source repo
   become: yes
@@ -30,10 +35,10 @@
   yum_repository:
     name: docker-ce-stable-source
     description: Docker CE Stable - Sources
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/source/stable
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/source/stable'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-edge repo
   become: yes
@@ -41,10 +46,10 @@
   yum_repository:
     name: docker-ce-edge
     description: Docker CE Edge - $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/$basearch/edge
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/$basearch/edge'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-edge-debuginfo repo
   become: yes
@@ -52,10 +57,10 @@
   yum_repository:
     name: docker-ce-edge-debuginfo
     description: Docker CE Edge - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/debug-$basearch/edge
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/debug-$basearch/edge'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-edge-source repo
   become: yes
@@ -63,10 +68,10 @@
   yum_repository:
     name: docker-ce-edge-source
     description: Docker CE Edge - Sources
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/source/edge
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/source/edge'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-test repo
   become: yes
@@ -74,10 +79,10 @@
   yum_repository:
     name: docker-ce-test
     description: Docker CE Test - $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/$basearch/test
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/$basearch/test'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-test-debuginfo repo
   become: yes
@@ -85,10 +90,10 @@
   yum_repository:
     name: docker-ce-test-debuginfo
     description: Docker CE Test - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/debug-$basearch/test
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/debug-$basearch/test'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-test-source repo
   become: yes
@@ -96,10 +101,10 @@
   yum_repository:
     name: docker-ce-test-source
     description: Docker CE Test - Sources
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/source/test
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/source/test'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-nightly repo
   become: yes
@@ -107,10 +112,10 @@
   yum_repository:
     name: docker-ce-nightly
     description: Docker CE Nightly - $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/$basearch/nightly
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/$basearch/nightly'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-nightly-debuginfo repo
   become: yes
@@ -118,10 +123,10 @@
   yum_repository:
     name: docker-ce-nightly-debuginfo
     description: Docker CE Nightly - Debuginfo $basearch
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/debug-$basearch/nightly
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/debug-$basearch/nightly'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 - name: add docker-ce-nightly-source repo
   become: yes
@@ -129,18 +134,16 @@
   yum_repository:
     name: docker-ce-nightly-source
     description: Docker CE Nightly - Sources
-    baseurl: https://download.docker.com/linux/{{ ansible_distribution | lower }}/$releasever/source/nightly
+    baseurl: '{{ yum_repository_os_distribution_base }}/$releasever/source/nightly'
     enabled: no
     gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+    gpgkey: {{ yum_repository_os_distribution_gpgkey }}
 
 # Make Generic Potentially
 - name: install docker-engine via yum
   become: yes
   become_user: root
   yum:
-    name:
-      # - docker-ce-cli
-      - docker-ce # {{ if docker_engine_version defined }}-{{ docker_engine_version }}{{ end }}
-      - containerd.io
+    name: '{{ item }}{% if docker_engine_version is defined %}-{{ docker_engine_version }}{% endif %}'
     state: '{{ docker_engine_package_state | default("present") }}'
+  with_items: '{{ docker_engine_os_pkgs }}'

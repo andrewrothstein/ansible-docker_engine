@@ -2,6 +2,3 @@
 # vars file for docker_engine
 docker_engine_package_state: '{% if docker_engine_upgrade is defined and docker_engine_upgrade %}latest{% else %}present{% endif %}'
 docker_engine_update_homebrew: '{% if docker_engine_upgrade is defined and docker_engine_upgrade %}yes{% else %}no{% endif %}'
-
-
-docker_engine_apt_repository_deb_arch: '{% if 'x86_64' == ansible_architecture %}amd64{% else %}{{ ansible_architecture | string }}{% endif %}'
