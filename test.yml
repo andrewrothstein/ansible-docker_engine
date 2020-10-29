@@ -12,5 +12,8 @@
       HTTPS_PROXY: https://proxy.example.com:3128
       no_proxy: '.example.com,127.0.0.1'
       NO_PROXY: '.example.com,127.0.0.1'
+    docker_engine_tls:
+      enabled: True
+      pki_dir: '{{ playbook_dir }}/test-pki'
   roles:
   - role: '{{ playbook_dir }}'

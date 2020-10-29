@@ -21,6 +21,9 @@
 - name: configure for private registries
   when: docker_engine_private_registry_cas is defined
   include_tasks: private-registry.yml
+- name: install docker daemon keys/cert/cacert
+  when: docker_engine_tls.enabled
+  include_tasks: pki.yml
 - name: configure {{ docker_engine_eff_init }} init...
   include_tasks: init.yml
 - name: start/enable docker
