@@ -1,2 +1,9 @@
 ---
 # handlers file for docker_engine
+- name: docker_engine_restart
+  become: yes
+  become_user: root
+  when: docker_engine_manage_service
+  service:
+    name: docker
+    state: restarted
