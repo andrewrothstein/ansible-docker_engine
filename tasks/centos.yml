@@ -137,4 +137,3 @@
   package:
     name: docker
     state: '{{ docker_engine_package_state | default("present") }}'
-
