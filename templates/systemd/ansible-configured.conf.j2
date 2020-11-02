@@ -7,6 +7,6 @@ After={{ s }}
 [Service]
 {% if docker_engine_init_exports is defined %}
 {% for k,v in docker_engine_init_exports | dictsort %}
-Environment={{ k }}={{ v | to_json }}
+Environment={{ '"%s=%s"' | format(k,v) }}
 {% endfor %}
 {% endif %}
