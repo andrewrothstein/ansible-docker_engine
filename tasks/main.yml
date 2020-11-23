@@ -9,7 +9,9 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
+
 - include_tasks: '{{ docker_engine_installer }}.yml'
+
 - name: write /etc/docker/daemon.json
   become: yes
   become_user: root
@@ -18,14 +20,19 @@
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     mode: 0644
+
 - name: configure for private registries
   when: docker_engine_private_registry_cas is defined
   include_tasks: private-registry.yml
+
 - name: install docker daemon keys/cert/cacert
   when: docker_engine_tls.enabled
   include_tasks: pki.yml
+
 - name: configure {{ docker_engine_eff_init }} init...
+  when: docker_engine_eff_init in ["systemd", "upstart"]
   include_tasks: init.yml
+
 - name: start/enable docker
   become: yes
   become_user: root
