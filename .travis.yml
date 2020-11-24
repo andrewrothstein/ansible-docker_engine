@@ -19,7 +19,6 @@ env:
 - OS=ubuntu_bionic
 - OS=ubuntu_focal
 - OS=ubuntu_xenial
-- OS=ubuntu_trusty
 language: python
 python: '3.7'
 script:
