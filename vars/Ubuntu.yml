@@ -1,3 +1,3 @@
 ---
 docker_engine_installer: ubuntu
-docker_engine_eff_init: '{{ ansible_distribution_version is version("14.10", operator="<=") | ternary("upstart", "systemd") }}'
+docker_engine_init: '{{ ansible_distribution_version is version("14.10", operator="<=") | ternary("upstart", "systemd") }}'
