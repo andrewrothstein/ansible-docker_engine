@@ -1,4 +1,0 @@
----
-docker_engine_templates:
-  - d: /etc/default
-    f: docker

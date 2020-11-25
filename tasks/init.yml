@@ -17,6 +17,6 @@
   with_items: '{{ docker_engine_templates }}'
   notify: docker_engine_restart
   template:
-    src: '{{ docker_engine_init | default("systemd") }}/{{ item.f }}.j2'
+    src: '{{ docker_engine_eff_init }}/{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m | default("0644") }}'
