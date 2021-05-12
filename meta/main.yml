@@ -15,24 +15,23 @@ galaxy_info:
         - all
     - name: Debian
       versions:
+        - bullseye
         - buster
-        - stretch
     - name: EL
       versions:
         - 7
     - name: Fedora
       versions:
-        - 31
-        - 32
+        - 34
+        - 35
     - name: Ubuntu
       versions:
         - bionic
         - focal
-        - xenial
   galaxy_tags:
     - development
   role_name: docker_engine
 
 dependencies:
   - role: andrewrothstein.tls
-    version: v0.0.2
+    version: v0.1.0
