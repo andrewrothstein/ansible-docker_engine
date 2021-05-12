@@ -17,3 +17,9 @@
       pki_dir: '{{ playbook_dir }}/test-pki'
   roles:
   - role: '{{ playbook_dir }}'
+  tasks:
+  - command: docker --version
+    register: docker_test_output
+  - name: docker --version
+    debug:
+      msg: '{{ docker_test_output.stdout }}'
