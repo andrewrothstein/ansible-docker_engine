@@ -15,7 +15,9 @@
   become: yes
   become_user: root
   with_items: '{{ docker_engine_templates }}'
-  notify: docker_engine_restart
+  notify:
+    - docker_engine_reconfigure
+    - docker_engine_restart
   template:
     src: '{{ docker_engine_eff_init }}/{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
