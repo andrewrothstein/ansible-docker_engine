@@ -1,15 +1,17 @@
 ---
 # instructions per https://docs.docker.com/install/linux/docker-ce/debian/
-- name: install OS pkg deps
+- name: install docker engine OS pkg deps
   become: yes
   become_user: root
   package:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
+    name: '{{ docker_engine_os_pkgs }}'
+    state: '{{ docker_engine_package_state | default("present") }}'
+- name: install docker engine addl OS pkgs
+  become: yes
+  become_user: root
+  when: docker_engine_addl_pkgs is defined and docker_engine_additions is defined and docker_engine_additions in docker_engine_addl_pkgs
+  package:
+    name: '{{ docker_engine_addl_pkgs[docker_engine_additions] }}'
     state: '{{ docker_engine_package_state | default("present") }}'
 - name: add apt key
   become: yes

@@ -15,6 +15,7 @@
     docker_engine_tls:
       enabled: True
       pki_dir: '{{ playbook_dir }}/test-pki'
+    docker_engine_additions: lvm
   roles:
   - role: '{{ playbook_dir }}'
   tasks:
