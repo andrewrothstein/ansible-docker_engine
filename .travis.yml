@@ -15,7 +15,6 @@ env:
 - OS=debian_bullseye
 - OS=debian_buster
 - OS=fedora_34
-- OS=fedora_35
 - OS=ubuntu_bionic
 - OS=ubuntu_focal
 language: python
