@@ -3,6 +3,7 @@
 docker_engine_upgrade: False
 
 docker_engine_manage_service: yes
+docker_engine_config_reload: yes
 docker_engine_state: started
 docker_engine_enabled: yes
 
