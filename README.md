@@ -1,6 +1,6 @@
 andrewrothstein.docker_engine
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-docker_engine.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-docker_engine)
+![Build Status](https://github.com/andrewrothstein/ansible-docker_engine/actions/workflows/build.yml/badge.svg)
 
 Installs the Docker Container Engine from OS packages.
 
