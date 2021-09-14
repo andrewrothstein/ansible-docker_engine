@@ -5,3 +5,7 @@ docker_engine_pkgs:
   - docker-ce
   - docker-ce-cli
   - containerd.io
+
+docker_engine_addl_pkgs:
+  lvm:
+    - lvm2

@@ -1,7 +1,0 @@
----
-docker_engine_installer: centos
-docker_engine_group: root
-docker_engine_pkgs:
-  - docker-ce
-  - docker-ce-cli
-  - containerd.io

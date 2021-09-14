@@ -10,6 +10,25 @@
       paths:
         - '{{ role_path }}/vars'
 
+
+- name: install docker engine OS pkg deps
+  become: yes
+  become_user: root
+  package:
+    name: '{{ docker_engine_os_pkgs | default([])  }}'
+    state: '{{ docker_engine_package_state | default("present") }}'
+
+- name: install docker engine addl OS pkg deps
+  become: yes
+  become_user: root
+  when: >-
+    docker_engine_addl_pkgs is defined
+    and docker_engine_additions is defined
+    and docker_engine_additions in docker_engine_addl_pkgs
+  package:
+    name: '{{ docker_engine_addl_pkgs[docker_engine_additions] }}'
+    state: '{{ docker_engine_package_state | default("present") }}'
+
 - include_tasks: '{{ docker_engine_installer }}.yml'
 
 - when: docker_engine_daemon_json is defined

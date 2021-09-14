@@ -131,9 +131,4 @@
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
 
-- name: install docker
-  become:  yes
-  become_user: root
-  package:
-    name: '{{ docker_engine_pkgs }}'
-    state: '{{ docker_engine_package_state | default("present") }}'
+- include_tasks: os-pkgs.yml
