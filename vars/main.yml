@@ -6,15 +6,15 @@ docker_engine_eff_init: '{{ docker_engine_init | default("systemd") }}'
 
 docker_engine_yum_repos:
   - name: docker-ce-stable
-    description: 'Docker CE Stable - $basearch'
-    mirrored_path: '$basearch/stable'
+    description: Docker CE Stable - $basearch
+    mirrored_path: $basearch/stable
     enabled: true
-  - name: docker-ce-stable-debuginfo
-    description: 'Docker CE Stable - Debuginfo $basearch'
-    mirrored_path: 'debug-$basearch/stable'
-  - name: docker-ce-stable-source
-    description: Docker CE Stable - Sources
-    mirrored_path: source/stable
+#  - name: docker-ce-stable-debuginfo
+#    description: 'Docker CE Stable - Debuginfo $basearch'
+#    mirrored_path: 'debug-$basearch/stable'
+#  - name: docker-ce-stable-source
+#    description: Docker CE Stable - Sources
+#    mirrored_path: source/stable
 #  - name: docker-ce-edge
 #    description: 'Docker CE Edge - $basearch'
 #    mirrored_path: '$basearch/edge'
