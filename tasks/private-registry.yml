@@ -1,6 +1,6 @@
 ---
 - name: mkdir -p {{ docker_engine_certs_d }}
-  become: yes
+  become: true
   become_user: root
   file:
     path: '{{ docker_engine_certs_d }}'
@@ -8,7 +8,7 @@
     mode: 0755
     group: '{{ docker_engine_group | default("docker") }}'
 - name: create registry CA cert directories
-  become: yes
+  become: true
   become_user: root
   with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
   file:
@@ -17,7 +17,7 @@
     mode: 0755
     group: '{{ docker_engine_group | default("docker") }}'
 - name: installing CA certs for private registries...
-  become: yes
+  become: true
   become_user: root
   with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
   copy:

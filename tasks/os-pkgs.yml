@@ -1,6 +1,6 @@
 ---
 - name: install docker engine packages
-  become: yes
+  become: true
   become_user: root
   package:
     name: '{{ docker_engine_pkgs }}'

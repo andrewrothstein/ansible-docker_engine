@@ -3,7 +3,7 @@
   include_vars: '{{ docker_engine_eff_init }}-vars.yml'
 
 - name: creating {{ docker_engine_eff_init }} config directories
-  become: yes
+  become: true
   become_user: root
   with_items: '{{ docker_engine_templates }}'
   file:
@@ -12,7 +12,7 @@
     mode: 0755
 
 - name: instantiating templates for {{ docker_engine_eff_init }}
-  become: yes
+  become: true
   become_user: root
   with_items: '{{ docker_engine_templates }}'
   notify:
