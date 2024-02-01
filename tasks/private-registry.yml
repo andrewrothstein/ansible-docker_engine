@@ -1,27 +1,27 @@
 ---
-- name: mkdir -p {{ docker_engine_certs_d }}
+- name: Mkdir -p {{ docker_engine_certs_d }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     path: '{{ docker_engine_certs_d }}'
     state: directory
-    mode: 0755
+    mode: '755'
     group: '{{ docker_engine_group | default("docker") }}'
-- name: create registry CA cert directories
+- name: Create registry CA cert directories
   become: true
   become_user: root
   with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
-  file:
+  ansible.builtin.file:
     path: '{{ docker_engine_certs_d }}/{{ item.registry }}'
     state: directory
-    mode: 0755
+    mode: '755'
     group: '{{ docker_engine_group | default("docker") }}'
-- name: installing CA certs for private registries...
+- name: Installing CA certs for private registries...
   become: true
   become_user: root
   with_items: '{{ docker_engine_private_registry_cas | default([]) }}'
-  copy:
+  ansible.builtin.copy:
     src: '{{ item.ca_cert }}'
     dest: '{{ docker_engine_certs_d }}/{{ item.registry }}/ca.crt'
     group: '{{ docker_engine_group | default("docker") }}'
-    mode: 0640
+    mode: '640'

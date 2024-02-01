@@ -1,6 +1,6 @@
 ---
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,61 +11,63 @@
         - '{{ role_path }}/vars'
 
 
-- name: install docker engine OS pkg deps
+- name: Install docker engine OS pkg deps
   become: true
   become_user: root
-  package:
+  ansible.builtin.package:
     name: '{{ docker_engine_os_pkgs | default([])  }}'
     state: '{{ docker_engine_package_state | default("present") }}'
 
-- name: install docker engine addl OS pkg deps
+- name: Install docker engine addl OS pkg deps
   become: true
   become_user: root
-  when: >-
-    docker_engine_addl_pkgs is defined
-    and docker_engine_additions is defined
-    and docker_engine_additions in docker_engine_addl_pkgs
-  package:
+  when:
+    - docker_engine_addl_pkgs is defined
+    - docker_engine_additions is defined
+    - docker_engine_additions in docker_engine_addl_pkgs
+  ansible.builtin.package:
     name: '{{ docker_engine_addl_pkgs[docker_engine_additions] }}'
     state: '{{ docker_engine_package_state | default("present") }}'
 
-- include_tasks: '{{ docker_engine_installer }}.yml'
+- name: Using {{ docker_engine_installer }} installer...
+  ansible.builtin.include_tasks: '{{ docker_engine_installer }}.yml'
 
-- when: docker_engine_daemon_json is defined
+- name: Configuring the docker_enginer
+  when: docker_engine_daemon_json is defined
   block:
-    - name: mkdir /etc/docker...
+    - name: Mkdir /etc/docker...
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: /etc/docker
         state: directory
-        mode: 0755
-    - name: write /etc/docker/daemon.json
+        mode: '755'
+    - name: Write /etc/docker/daemon.json
       become: true
       become_user: root
       notify: docker_engine_restart
-      template:
+      ansible.builtin.template:
         src: daemon.json.j2
         dest: /etc/docker/daemon.json
-        mode: 0644
+        mode: '644'
 
-- name: configure for private registries
+- name: Configure for private registries
   when: docker_engine_private_registry_cas is defined
-  include_tasks: private-registry.yml
+  ansible.builtin.include_tasks: private-registry.yml
 
-- name: install docker daemon keys/cert/cacert
+- name: Install docker daemon keys/cert/cacert
   when: docker_engine_tls.enabled
-  include_tasks: pki.yml
+  ansible.builtin.include_tasks: pki.yml
 
-- name: configure {{ docker_engine_eff_init }} init...
+- name: Configure {{ docker_engine_eff_init }} init...
   when: docker_engine_eff_init in ["systemd", "upstart"]
-  include_tasks: init.yml
+  ansible.builtin.include_tasks: init.yml
 
-- name: start/enable docker
+- name: Start/enable docker
   become: true
   become_user: root
   when: docker_engine_manage_service
-  service:
+  ansible.builtin.service:
     name: docker
     state: '{{ docker_engine_state }}'
     enabled: '{{ docker_engine_enabled }}'

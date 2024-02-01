@@ -1,24 +1,24 @@
 ---
-- name: initialize vars for {{ docker_engine_eff_init }} init system
-  include_vars: '{{ docker_engine_eff_init }}-vars.yml'
+- name: Initialize vars for {{ docker_engine_eff_init }} init system
+  ansible.builtin.include_vars: '{{ docker_engine_eff_init }}-vars.yml'
 
-- name: creating {{ docker_engine_eff_init }} config directories
+- name: Creating {{ docker_engine_eff_init }} config directories
   become: true
   become_user: root
   with_items: '{{ docker_engine_templates }}'
-  file:
+  ansible.builtin.file:
     path: '{{ item.d }}'
     state: directory
-    mode: 0755
+    mode: '755'
 
-- name: instantiating templates for {{ docker_engine_eff_init }}
+- name: Instantiating templates for {{ docker_engine_eff_init }}
   become: true
   become_user: root
   with_items: '{{ docker_engine_templates }}'
   notify:
     - docker_engine_reconfigure
     - docker_engine_restart
-  template:
+  ansible.builtin.template:
     src: '{{ docker_engine_eff_init }}/{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m | default("0644") }}'

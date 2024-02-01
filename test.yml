@@ -17,10 +17,11 @@
       pki_dir: '{{ playbook_dir }}/test-pki'
     docker_engine_additions: lvm
   roles:
-  - role: '{{ playbook_dir }}'
+    - role: '{{ playbook_dir }}'
   tasks:
-  - command: docker --version
-    register: docker_test_output
-  - name: docker --version
-    debug:
-      msg: '{{ docker_test_output.stdout }}'
+    - name: Executing 'docker --version'
+      ansible.builtin.command: docker --version
+      register: docker_test_output
+    - name: Output of 'docker --version'
+      ansible.builtin.debug:
+        msg: '{{ docker_test_output.stdout }}'

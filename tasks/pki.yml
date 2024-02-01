@@ -1,13 +1,13 @@
 ---
-- name: mkdir -p {{ docker_engine_tls_dir }}
+- name: Mkdir -p {{ docker_engine_tls_dir }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     path: '{{ docker_engine_tls_dir }}'
     state: directory
-    mode: 0755
-- name: install keys/certs
-  include_role:
+    mode: '755'
+- name: Install keys/certs
+  ansible.builtin.include_role:
     name: andrewrothstein.tls
   vars:
     tls_become: true
