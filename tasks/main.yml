@@ -45,7 +45,7 @@
     - name: Write /etc/docker/daemon.json
       become: true
       become_user: root
-      notify: docker_engine_restart
+      notify: Docker_engine_restart
       ansible.builtin.template:
         src: daemon.json.j2
         dest: /etc/docker/daemon.json
