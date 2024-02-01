@@ -8,7 +8,7 @@ docker_engine_state: started
 docker_engine_enabled: true
 
 # install additional packages for a production installation
-#docker_engine_additions: lvm
+# docker_engine_additions: lvm
 
 docker_engine_certs_d: /etc/docker/certs.d
 ## Example for installing certs for private registries

@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.docker_engine
+  hosts: all
   vars:
     docker_engine_manage_service: false
     docker_engine_private_registry_cas:
@@ -21,6 +22,7 @@
   tasks:
     - name: Executing 'docker --version'
       ansible.builtin.command: docker --version
+      changed_when: false
       register: docker_test_output
     - name: Output of 'docker --version'
       ansible.builtin.debug:
