@@ -15,7 +15,7 @@
   become: true
   become_user: root
   ansible.builtin.package:
-    name: '{{ docker_engine_os_pkgs | default([])  }}'
+    name: '{{ docker_engine_os_pkgs | default([]) }}'
     state: '{{ docker_engine_package_state | default("present") }}'
 
 - name: Install docker engine addl OS pkg deps
