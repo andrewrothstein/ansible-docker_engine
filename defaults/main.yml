@@ -19,7 +19,7 @@ docker_engine_certs_d: /etc/docker/certs.d
 ## override init system - currently support rc and systemd
 # docker_engine_init: systemd
 
-docker_engine_tls_dir: '{{ ansible_env.HOME }}/.docker'
+docker_engine_tls_dir: '{{ ansible_facts["env"]["HOME"] }}/.docker'
 docker_engine_tls:
   enabled: false
 #  pki_dir: ~/secrets
